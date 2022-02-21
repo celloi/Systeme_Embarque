@@ -132,13 +132,14 @@ if __name__ == '__main__':
             # Reinit watchdog
             watchdog = False
             my_watchdog.current_cpt = 10
-# le principe utilisee est de remplir le reservoir à 30 creer un pneu et un moteur à chaque fois 
-            if tank < 30:
+            # le principe utilisee est de remplir le reservoir à 30 creer un pneu et un moteur à chaque fois 
+            if tank < 30 and ISPUMP:
                 if task_to_run.name == "pump1":
                     task_to_run.run()
                     tank += 10
                 elif task_to_run.name == "pump2":
                     tank += 20
+                    ISPUMP = False
                 else:
                     continue
             elif tank >= 30:
@@ -149,6 +150,7 @@ if __name__ == '__main__':
                 elif task_to_run.name == "machine2":
                     stocks_roues += 1
                     tank -= 5
+                    ISPUMP = True
 
         print("Nombres de roues produits :" + str(stocks_roues))
 

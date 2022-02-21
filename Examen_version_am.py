@@ -133,7 +133,7 @@ if __name__ == '__main__':
             # Reinit watchdog
             watchdog = False
             my_watchdog.current_cpt = 10
-            # le principe utilisee est de remplir le reservoir à 30 creer un pneu et un moteur à chaque fois
+            # le principe utilisee consiste à creer 4 Roues et un moteur tou en remplissant equitable les reservoires
             if ISPUMP:
                 if task_to_run.name == "pump1":
                     task_to_run.run()

@@ -106,6 +106,7 @@ if __name__ == '__main__':
 
     ISPUMP = True
     ISMACH = False
+    nbrou = 0;
 
     my_watchdog = Watchdog(period=10)  # Watchdog 10 seconds
     my_watchdog.start()
@@ -143,14 +144,21 @@ if __name__ == '__main__':
                 else:
                     continue
             elif not ISPUMP:
-                if task_to_run.name == "machine1":
+                if task_to_run.name == "machine2" and nbrou <4:
+                    task_to_run.run()
+                    stocks_roues += 1
+                    tank -= 5
+                    nbrou += 1
+                    if nbrou == 4:
+                        ISPUMP = True
+                elif task_to_run.name == "machine1" and nbrou ==4:
                     task_to_run.run()
                     stocks_moteur += 1
                     tank -= 25
-                elif task_to_run.name == "machine2":
-                    stocks_roues += 1
-                    tank -= 5
                     ISPUMP = True
+                    nbrou = 0
+                else:
+                    continue
 
         print("Nombres de roues produits :" + str(stocks_roues))
 

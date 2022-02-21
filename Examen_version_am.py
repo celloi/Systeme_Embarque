@@ -139,6 +139,7 @@ if __name__ == '__main__':
                     task_to_run.run()
                     tank += 10
                 elif task_to_run.name == "pump2":
+                    task_to_run.run()
                     tank += 20
                     ISPUMP = False
                 else:
